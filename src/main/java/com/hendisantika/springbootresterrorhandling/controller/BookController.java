@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,5 +49,21 @@ public class BookController {
     Book findOne(@PathVariable @Min(1) Long id) {
         return bookRepository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
+    }
+
+    // Save or update
+    @PutMapping("/books/{id}")
+    Book saveOrUpdate(@RequestBody Book newBook, @PathVariable Long id) {
+        return bookRepository.findById(id)
+                .map(x -> {
+                    x.setName(newBook.getName());
+                    x.setAuthor(newBook.getAuthor());
+                    x.setPrice(newBook.getPrice());
+                    return bookRepository.save(x);
+                })
+                .orElseGet(() -> {
+                    newBook.setId(id);
+                    return bookRepository.save(newBook);
+                });
     }
 }
