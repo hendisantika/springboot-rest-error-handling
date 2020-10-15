@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
@@ -37,7 +37,7 @@ public class Book {
     @NotEmpty(message = "Please provide a author")
     private String author;
 
-    @NotBlank(message = "Please provide a price")
+    @NotNull(message = "Please provide a price")
     @DecimalMin("1.00")
     private BigDecimal price;
 
