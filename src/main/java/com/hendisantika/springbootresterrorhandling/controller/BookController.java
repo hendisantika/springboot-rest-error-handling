@@ -2,10 +2,14 @@ package com.hendisantika.springbootresterrorhandling.controller;
 
 import com.hendisantika.springbootresterrorhandling.entity.Book;
 import com.hendisantika.springbootresterrorhandling.error.BookNotFoundException;
+import com.hendisantika.springbootresterrorhandling.error.BookUnSupportedFieldPatchException;
 import com.hendisantika.springbootresterrorhandling.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -65,5 +70,33 @@ public class BookController {
                     newBook.setId(id);
                     return bookRepository.save(newBook);
                 });
+    }
+
+    // update author only
+    @PatchMapping("/books/{id}")
+    Book patch(@RequestBody Map<String, String> update, @PathVariable Long id) {
+        return bookRepository.findById(id)
+                .map(x -> {
+
+                    String author = update.get("author");
+                    if (!StringUtils.isEmpty(author)) {
+                        x.setAuthor(author);
+
+                        // better create a custom method to update a value = :newValue where id = :id
+                        return bookRepository.save(x);
+                    } else {
+                        throw new BookUnSupportedFieldPatchException(update.keySet());
+                    }
+
+                })
+                .orElseGet(() -> {
+                    throw new BookNotFoundException(id);
+                });
+
+    }
+
+    @DeleteMapping("/books/{id}")
+    void deleteBook(@PathVariable Long id) {
+        bookRepository.deleteById(id);
     }
 }
