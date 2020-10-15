@@ -1,9 +1,13 @@
 package com.hendisantika.springbootresterrorhandling.controller;
 
+import com.hendisantika.springbootresterrorhandling.entity.Book;
 import com.hendisantika.springbootresterrorhandling.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,5 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
 
     @Autowired
-    private BookRepository repository;
+    private BookRepository bookRepository;
+
+    // Find
+    @GetMapping("/books")
+    List<Book> findAll() {
+        return bookRepository.findAll();
+    }
 }
