@@ -1,15 +1,18 @@
 package com.hendisantika.springbootresterrorhandling.controller;
 
 import com.hendisantika.springbootresterrorhandling.entity.Book;
+import com.hendisantika.springbootresterrorhandling.error.BookNotFoundException;
 import com.hendisantika.springbootresterrorhandling.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 /**
@@ -38,5 +41,12 @@ public class BookController {
     @PostMapping("/books")
     Book newBook(@Valid @RequestBody Book newBook) {
         return bookRepository.save(newBook);
+    }
+
+    // Find
+    @GetMapping("/books/{id}")
+    Book findOne(@PathVariable @Min(1) Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
     }
 }
