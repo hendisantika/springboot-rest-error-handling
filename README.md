@@ -114,3 +114,24 @@ curl --location --request PUT 'http://localhost:8080/books/5' \
   "price": 20.2
 }
 ```
+
+**Update Author Only**
+##### Request
+```shell script
+curl --location --request PATCH 'http://localhost:8080/books/5' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "author": "Hendi Santika Hiruzen"
+}' | jq .
+
+```
+
+##### Response
+```shell script
+{
+  "id": 5,
+  "name": "A Guide to be Spring Boot Developer as Way of Life",
+  "author": "Hendi Santika Hiruzen",
+  "price": 20.2
+}
+```
