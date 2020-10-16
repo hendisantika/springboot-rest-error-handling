@@ -74,3 +74,20 @@ curl --location --request POST 'http://localhost:8080/books' \
   "price": 15.41
 }
 ```
+
+**Find Book By ID**
+##### Request
+```shell script
+curl --location --request GET 'http://localhost:8080/books/4' | jq .
+
+```
+
+##### Response
+```shell script
+{
+  "id": 4,
+  "name": "A Guide to be Spring Boot Developer Way of Life",
+  "author": "Hendi Santika",
+  "price": 15.41
+}
+```
