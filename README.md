@@ -51,6 +51,8 @@ curl --location --request GET 'http://localhost:8080/books' | jq.
 ]
 ```
 
+![List All Books](img/list.png "List All Books")
+
 **Add New Book**
 
 ##### Request
@@ -75,6 +77,8 @@ curl --location --request POST 'http://localhost:8080/books' \
 }
 ```
 
+![Add New Book](img/add.png "Add New Book")
+
 **Find Book By ID**
 ##### Request
 ```shell script
@@ -92,6 +96,8 @@ curl --location --request GET 'http://localhost:8080/books/4' | jq .
 }
 ```
 
+![Find Book By ID](img/find.png "Find Book By ID")
+
 **Save or Update Book**
 ##### Request
 ```shell script
@@ -104,6 +110,8 @@ curl --location --request PUT 'http://localhost:8080/books/5' \
 }' | jq .
 
 ```
+
+![Save or Update Book](img/update.png "Save or Update Book")
 
 ##### Response
 ```shell script
@@ -125,6 +133,7 @@ curl --location --request PATCH 'http://localhost:8080/books/5' \
 }' | jq .
 
 ```
+![Update Author Only](img/patch.png "Update Author Only")
 
 ##### Response
 ```shell script
@@ -142,3 +151,5 @@ curl --location --request PATCH 'http://localhost:8080/books/5' \
 curl --location --request DELETE 'http://localhost:8080/books/6'
 
 ```
+
+![Delete a Book by ID](img/delete.png "Delete a Book by ID")
