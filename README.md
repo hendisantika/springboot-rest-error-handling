@@ -91,3 +91,26 @@ curl --location --request GET 'http://localhost:8080/books/4' | jq .
   "price": 15.41
 }
 ```
+
+**Save or Update Book**
+##### Request
+```shell script
+curl --location --request PUT 'http://localhost:8080/books/5' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "A Guide to be Spring Boot Developer as Way of Life",
+    "author": "Hendi Santika",
+    "price": 20.20
+}' | jq .
+
+```
+
+##### Response
+```shell script
+{
+  "id": 5,
+  "name": "A Guide to be Spring Boot Developer as Way of Life",
+  "author": "Hendi Santika",
+  "price": 20.2
+}
+```
