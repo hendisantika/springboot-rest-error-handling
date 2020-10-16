@@ -135,3 +135,10 @@ curl --location --request PATCH 'http://localhost:8080/books/5' \
   "price": 20.2
 }
 ```
+
+**Delete a Book by ID**
+##### Request
+```shell script
+curl --location --request DELETE 'http://localhost:8080/books/6'
+
+```
