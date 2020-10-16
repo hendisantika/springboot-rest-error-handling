@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "0e712a7a-5253-40a9-b997-d1de2f500b4d",
+    "name": "Spring Boot REST Error Handling",
+    "description": "Spring Boot REST Error Handling",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/books",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "books"
+          ]
+        },
+        "description": "Get All Books"
+      },
+      "response": []
+    },
+    {
+      "name": "Add New Book",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"A Guide to be Spring Boot Developer Way of Life\",\n    \"author\": \"Hendi Santika\",\n    \"price\": 15.41\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/books",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "books"
+          ]
+        },
+        "description": "Add New Book"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Book By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/books/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "books",
+            "4"
+          ]
+        },
+        "description": "Get Book By ID"
+      },
+      "response": []
+    },
+    {
+      "name": "Save or Update Book",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"A Guide to be Spring Boot Developer Way of Life\",\n    \"author\": \"Hendi Santika\",\n    \"price\": 20.20\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/books/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "books",
+            "5"
+          ]
+        },
+        "description": "Save or Update Book"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Author Only",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"author\": \"Hendi Santika Hiruzen\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/books/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "books",
+            "5"
+          ]
+        },
+        "description": "Update Author Only"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete a Book by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/books/6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "books",
+            "6"
+          ]
+        },
+        "description": "Delete a Book by ID"
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
